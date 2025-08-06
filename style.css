@@ -144,3 +144,18 @@ body {
     opacity: 1;
     transform: scale(1) rotate(var(--rotation));
 }
+/* Estilo general (PC y tablets grandes) */
+.texto {
+    font-size: 3rem;
+}
+
+/* Ajustes para pantallas pequeñas (celulares) */
+@media (max-width: 768px) {
+    .texto {
+        font-size: 1.5rem;
+    }
+
+    .foto {
+        width: 80%;
+    }
+}
