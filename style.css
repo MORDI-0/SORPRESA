@@ -1,0 +1,146 @@
+/* Fondo con degradado animado */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.sky {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #ff9ecb, #ffb5d9);
+    animation: skyShift 10s infinite alternate;
+    z-index: -2;
+}
+
+@keyframes skyShift {
+    0% { background: linear-gradient(180deg, #ff9ecb, #ffb5d9); }
+    100% { background: linear-gradient(180deg, #ff7ea3, #ffa7c5); }
+}
+
+/* Nubes ilustradas */
+.cloud {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: cloudMove 60s linear infinite;
+    box-shadow: 30px 10px 40px rgba(255,255,255,0.8),
+                60px 20px 60px rgba(255,255,255,0.7);
+}
+
+.cloud::before,
+.cloud::after {
+    content: '';
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.cloud::before {
+    width: 100px;
+    height: 100px;
+    top: -30px;
+    left: 40px;
+    box-shadow: 20px 10px 30px rgba(255,255,255,0.7);
+}
+
+.cloud::after {
+    width: 140px;
+    height: 140px;
+    top: -50px;
+    left: 100px;
+    box-shadow: 30px 20px 50px rgba(255,255,255,0.6);
+}
+
+.cloud {
+    width: 200px;
+    height: 80px;
+    top: 20%;
+    left: -250px;
+}
+
+.cloud.small {
+    width: 120px;
+    height: 50px;
+    top: 40%;
+    animation-duration: 80s;
+}
+
+.cloud.large {
+    width: 300px;
+    height: 120px;
+    top: 60%;
+    animation-duration: 100s;
+}
+
+.cloud.tiny {
+    width: 80px;
+    height: 30px;
+    top: 10%;
+    animation-duration: 70s;
+}
+
+.cloud.medium {
+    width: 180px;
+    height: 70px;
+    top: 75%;
+    animation-duration: 90s;
+}
+
+@keyframes cloudMove {
+    0% { left: -400px; }
+    100% { left: 110%; }
+}
+
+/* Mensajes flotantes */
+.messages {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.message {
+    position: absolute;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 10px pink, 0 0 20px red;
+    animation: floatMove 12s linear forwards;
+}
+
+@keyframes floatMove {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    50% { transform: translateY(-100px) scale(1.2); opacity: 0.8; }
+    100% { transform: translateY(-300px) scale(1); opacity: 0; }
+}
+
+/* Fotos sobre todos los textos */
+.photos {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.photos img {
+    position: absolute;
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 1),
+                0 0 60px rgba(255, 100, 150, 0.8);
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 1s, transform 1s;
+}
+
+.photos img.active {
+    opacity: 1;
+    transform: scale(1) rotate(var(--rotation));
+}
